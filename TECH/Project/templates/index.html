@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2f33;
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .sidebar {
+            background-color: #23272a;
+            width: 200px;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .chat-box {
+            background-color: #36393f;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 300px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #40444b;
+            color: #fff;
+        }
+        button {
+            background-color: #7289da;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5b6eae;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background-color: #40444b;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        async function getResponse() {
+            const userInput = document.getElementById("userInput").value;
+            const responseArea = document.getElementById("response");
+            const historyList = document.getElementById("history");
+
+            responseArea.innerHTML = "Thinking...";
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            const data = await response.json();
+            responseArea.innerHTML = data.reply;
+
+            // Add to recent history
+            const listItem = document.createElement("li");
+            listItem.textContent = userInput;
+            historyList.appendChild(listItem);
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Recent History</h3>
+        <ul id="history">
+            <!-- Recent history items will be added here -->
+        </ul>
+    </div>
+    <div class="chat-container">
+        <div class="chat-box">
+            <h2>Chatbot</h2>
+            <div class="chat-messages">
+                <p><strong>Response:</strong> <span id="response"></span></p>
+            </div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="getResponse()">Send</button>
+        </div>
+    </div>
+</body>
+</html>
