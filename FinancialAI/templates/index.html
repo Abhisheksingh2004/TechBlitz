@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="static/assets/logo.jpg" alt="Logo" class="logo-img">
+            <span class="logo-text">Finance Analyzer AI</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <select id="language-selector" class="language-selector">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+            </li>
+            <li>
+                <button id="theme-toggle" class="theme-toggle">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </li>
+            <li>
+                <button class="get-started">Get Started</button>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="financial-forecasting">
+        <h2>Financial Forecasting with AI</h2>
+        <p>Empower your financial decisions with AI-driven insights</p>
+        <div class="features-container">
+            <div class="feature-card">
+                <img src="/static/assets/icon-financial-analysis.webp" alt="Financial Analysis" class="feature-icon">
+                <h3>Financial Analysis</h3>
+                <p>Comprehensive analysis of financial statements and metrics</p>
+            </div>
+            <div class="feature-card">
+                <img src="/static/assets/icon-ai-predictions.jpg" alt="AI Predictions" class="feature-icon">
+                <h3>AI Predictions</h3>
+                <p>Advanced AI algorithms for accurate financial forecasting</p>
+            </div>
+            <div class="feature-card">
+                <img src="/static/assets/market.webp" alt="Market Insights" class="feature-icon">
+                <h3>Market Insights</h3>
+                <p>Real-time market data and trend analysis</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero-section">
+        <div class="chat-container">
+            <h2><span class="icon">💲</span> Financial Assistant</h2>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input-container">
+                <input type="text" id="user-input" placeholder="Ask me anything about finance..." class="chat-input">
+                <button class="send-button" onclick="sendMessage()">⚡</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="about-container">
+            <h2>About Us</h2>
+            <p>We are a team of finance and AI enthusiasts dedicated to empowering individuals and businesses with
+                AI-driven financial insights.</p>
+            <p>Our mission is to simplify financial decision-making using advanced predictive analytics and real-time
+                data processing.</p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.0.3/marked.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
